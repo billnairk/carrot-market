@@ -2,7 +2,11 @@ import "../app/globals.css";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <div className="w-full mx-auto max-w-lg">
+      <Component {...pageProps} />
+    </div>
+  );
 }
 
 export default MyApp;
