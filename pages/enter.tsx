@@ -50,7 +50,7 @@ export default function Enter() {
                 id="input"
                 type="email"
                 required
-                className="appearance-none shadow-md my-2 w-full rounded-md border-gray-400 focus:ring-purple-300"
+                className="appearance-none shadow-md my-2 w-full rounded-md border-gray-400 focus:ring-purple-300 focus:border-purple-300"
               />
             ) : null}
             {method === "phone" ? (
@@ -62,7 +62,7 @@ export default function Enter() {
                   id="input"
                   type="number"
                   required
-                  className="appearance-none w-full rounded-r-md focus:ring-purple-300 border-gray-400"
+                  className="appearance-none w-full rounded-r-md focus:ring-purple-300 border-gray-400 focus:border-purple-300"
                 />
               </div>
             ) : null}
