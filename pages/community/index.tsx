@@ -4,22 +4,22 @@ import type { NextPage } from "next";
 const Community: NextPage = () => {
   return (
     <Layout hasTabBar title="News">
-      <div className="py-4 px-6 space-y-6">
+      <div className="py-4 space-y-6">
         {[1, 2, 3, 4, 5, 6, 7].map((_, i) => (
           <div key={i} className="flex flex-col cursor-pointer items-start">
-            <span className="flex items-center bg-gray-200 text-sm font-bold px-2.5 py-0.5 rounded-full text-gray-900">
+            <span className="mx-4 flex items-center bg-gray-200 text-sm font-bold px-2.5 py-0.5 rounded-full text-gray-900">
               동네질문
             </span>
-            <div className="pt-2 text-gray-800">
+            <div className="px-4 pt-2 text-gray-800">
               <span className="text-purple-500 font-medium">Q.</span> What is
               the best mandu restaurant?
             </div>
-            <div className="pt-4 flex justify-between w-full text-sm font-bold text-gray-500">
+            <div className="px-4 pt-4 flex justify-between w-full text-sm font-bold text-gray-500">
               <span>니꼬</span>
               <span>18시간 전</span>
             </div>
             <div className="mt-4 py-2 flex border-t border-b w-full space-x-4">
-              <span className="flex items-center space-x-2">
+              <span className="flex px-4 items-center space-x-2">
                 <svg
                   className="w-4 h-4"
                   fill="none"
