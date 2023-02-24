@@ -7,16 +7,16 @@ const CommunityPostDetail: NextPage = () => {
         동네질문
       </span>
       <div className="flex py-3 px-4 mb-3 space-x-2 border-b border-gray-300 cursor-pointer">
-        <div className="w-10 h-10 bg-purple-600 rounded-full" />
+        <div className="w-10 h-10 bg-purple-200 rounded-full" />
         <div>
-          <p className="font-bold opacity-80">Steve Jebs</p>
+          <p className="font-bold opacity-80">Miiase</p>
           <p className="text-sm opacity-40">View profile &rarr;</p>
         </div>
       </div>
       <div className="">
         <div className=" text-gray-800">
-          <span className="text-purple-500 ml-4 font-medium">Q.</span> What is
-          the best mandu restaurant?
+          <span className="text-purple-500 ml-4 font-medium">Q. </span>오늘
+          붕어빵 아저씨 나오셨나요?
         </div>
         <div className="mt-4 py-2 flex border-t border-b w-full space-x-4">
           <span className="flex items-center ml-4 space-x-2">
@@ -75,15 +75,13 @@ const CommunityPostDetail: NextPage = () => {
             <span className="block text-xs font-medium text-gray-500">
               2시간 전
             </span>
-            <p className="mt-2">
-              The best mandu restaurant is the one next to my house.
-            </p>
+            <p className="mt-2">네! 오후 9시까지 하신대요~ 빨리 가셔야 할 듯</p>
           </div>
         </div>
       </div>
       <div className="mx-4">
         <textarea
-          className="shadow-md my-1 w-full rounded-md border-gray-400 focus:ring-purple-300"
+          className="shadow-md my-1 w-full rounded-md border-gray-400 focus:ring-purple-300 focus:outline-none focus:border-purple-300"
           rows={4}
           placeholder="Answer this question!"
         />
