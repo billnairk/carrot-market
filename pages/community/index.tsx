@@ -6,7 +6,7 @@ import Link from "next/link";
 const Community: NextPage = () => {
   return (
     <Layout hasTabBar title="News">
-      <div className="pt-2 space-y-3">
+      <div className="pt-1 space-y-3">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, i) => (
           <Link key={i} href={`/community/${i}`}>
             <div className="flex flex-col cursor-pointer items-start hover:bg-purple-100 transition-colors">
