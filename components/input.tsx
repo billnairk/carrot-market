@@ -1,9 +1,12 @@
+import type { UseFormRegisterReturn } from "react-hook-form";
+
 interface InputProps {
   className: string;
   id: string;
   type: string;
   placeholder?: string;
-  [key: string]: any;
+  register: UseFormRegisterReturn;
+  required: boolean;
 }
 
 export default function Input({
@@ -11,10 +14,12 @@ export default function Input({
   id,
   type,
   placeholder,
+  register,
   ...rest
 }: InputProps) {
   return (
     <input
+      {...register}
       className={className}
       id={id}
       type={type}

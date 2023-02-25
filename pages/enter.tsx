@@ -1,11 +1,30 @@
 import Button from "@/components/button";
 import { cls } from "@/libs/utils";
+import { NextPage } from "next";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import Input from "@/components/input";
 
-export default function Enter() {
+interface EnterForm {
+  email?: string;
+  phone?: string;
+}
+
+const Enter: NextPage = () => {
+  const { register, watch, reset, handleSubmit } = useForm<EnterForm>();
+  console.log(watch());
   const [method, setMethod] = useState<"email" | "phone">("email");
-  const onEmailClick = () => setMethod("email");
-  const onPhoneClick = () => setMethod("phone");
+  const onEmailClick = () => {
+    setMethod("email");
+    reset();
+  };
+  const onPhoneClick = () => {
+    setMethod("phone");
+    reset();
+  };
+  const onValid = (data: EnterForm) => {
+    console.log(data);
+  };
   return (
     <div className="mt-16 px-4">
       <h3 className="text-3xl font-bold text-center">Enter to Carrot</h3>
@@ -37,15 +56,16 @@ export default function Enter() {
             </button>
           </div>
         </div>
-        <form className="mt-4 flex flex-col">
+        <form onSubmit={handleSubmit(onValid)} className="mt-4 flex flex-col">
           <label htmlFor="input" className="text-sm text-gray-500 font-bold">
             {method === "email" ? "Email address" : null}
             {method === "phone" ? "Phone number" : null}
           </label>
           <div>
             {method === "email" ? (
-              <input
-                id="input"
+              <Input
+                register={register("email")}
+                id="email"
                 type="email"
                 required
                 className="appearance-none shadow-md my-2 w-full rounded-md border-gray-400 focus:ring-purple-300 focus:border-purple-300"
@@ -56,8 +76,9 @@ export default function Enter() {
                 <span className="flex items-center justify-center bg-gray-100 select-none border-gray-400 rounded-l-md border border-r-0 px-2 text-sm text-gray-500">
                   +82
                 </span>
-                <input
-                  id="input"
+                <Input
+                  register={register("phone")}
+                  id="phone"
                   type="number"
                   required
                   className="appearance-none w-full rounded-r-md focus:ring-purple-300 border-gray-400 focus:border-purple-300"
@@ -109,4 +130,6 @@ export default function Enter() {
       </div>
     </div>
   );
-}
+};
+
+export default Enter;
