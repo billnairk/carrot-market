@@ -1,3 +1,4 @@
+import Input from "@/components/input";
 import Layout from "@/components/layout";
 import { NextPage } from "next";
 
@@ -12,7 +13,7 @@ const EditProfile: NextPage = () => {
             className="flex items-center text-sm text-gray-500 font-medium my-2 px-3 rounded-md border border-gray-500 hover:border-purple-400 hover:text-purple-300"
           >
             Change
-            <input
+            <Input
               id="picture"
               type="file"
               className="hidden"
@@ -24,7 +25,7 @@ const EditProfile: NextPage = () => {
           <label htmlFor="email" className="text-sm text-gray-500 font-bold">
             Email address
           </label>
-          <input
+          <Input
             id="email"
             type="email"
             required

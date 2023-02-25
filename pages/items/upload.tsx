@@ -1,3 +1,6 @@
+import Button from "@/components/button";
+import Input from "@/components/input";
+import Textarea from "@/components/textarea";
 import type { NextPage } from "next";
 
 const Upload: NextPage = () => {
@@ -30,12 +33,12 @@ const Upload: NextPage = () => {
           <div className="absolute left-0 pl-3 pointer-events-none">
             <span className="text-sm text-gray-500">$</span>
           </div>
-          <input
-            className="appearance-none pl-7 shadow-md my-1 w-full rounded-md border-gray-400 focus:ring-purple-300"
+          <Input
+            className="appearance-none pl-7 shadow-md my-1 w-full rounded-md border-gray-400 focus:ring-purple-300 focus:outline-none focus:border-purple-300"
             id="price"
             type="text"
             placeholder="0.00"
-          />
+          ></Input>
           <div className="absolute right-3 pointer-events-none">
             <span className="text-gray-500 ">USD</span>
           </div>
@@ -43,16 +46,9 @@ const Upload: NextPage = () => {
       </div>
       <div>
         <label className="text-sm text-gray-500 font-bold">Description</label>
-        <div>
-          <textarea
-            className="shadow-md my-1 w-full rounded-md border-gray-400 focus:ring-purple-300"
-            rows={4}
-          />
-        </div>
+        <Textarea rows={4} />
       </div>
-      <button className="w-full border border-1 py-3 px-5 rounded-md text-purple-500 hover:bg-purple-200 hover:border-purple-500 hover:transition-all">
-        Upload product
-      </button>
+      <Button>Upload product</Button>
     </div>
   );
 };
