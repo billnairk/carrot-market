@@ -1,5 +1,5 @@
-import Button from "@/components/button";
-import Textarea from "@/components/textarea";
+import Button from "@components/button";
+import Textarea from "@components/textarea";
 import type { NextPage } from "next";
 
 const Write: NextPage = () => {

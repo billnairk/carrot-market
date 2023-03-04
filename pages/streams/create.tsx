@@ -1,5 +1,5 @@
-import Input from "@/components/input";
-import Textarea from "@/components/textarea";
+import Input from "@components/input";
+import Textarea from "@components/textarea";
 import { NextPage } from "next";
 
 const Create: NextPage = () => {

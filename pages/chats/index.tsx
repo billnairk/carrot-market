@@ -1,4 +1,4 @@
-import Layout from "@/components/layout";
+import Layout from "@components/layout";
 import type { NextPage } from "next";
 import Link from "next/link";
 
@@ -14,7 +14,7 @@ const Chats: NextPage = () => {
                 <p className="mt-1 font-lg font-bold text-gray-600">
                   Steve Jebs
                 </p>
-                <p className="text-medium font-medium opacity-40">
+                <p className="text-medium font-medium text-gray-400">
                   모니터 구매할 수 있나요?
                 </p>
               </div>

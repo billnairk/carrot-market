@@ -1,6 +1,6 @@
-import Button from "@/components/button";
-import Input from "@/components/input";
-import Textarea from "@/components/textarea";
+import Button from "@components/button";
+import Input from "@components/input";
+import Textarea from "@components/textarea";
 import type { NextPage } from "next";
 
 const Upload: NextPage = () => {

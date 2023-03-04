@@ -1,5 +1,5 @@
-import Layout from "@/components/layout";
-import Message from "@/components/message";
+import Layout from "@components/layout";
+import Message from "@components/message";
 import { NextPage } from "next";
 
 const Stream: NextPage = () => {
