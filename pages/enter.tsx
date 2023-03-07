@@ -11,10 +11,23 @@ interface EnterForm {
   phone?: string;
 }
 
+interface TokenForm {
+  token: string;
+}
+
+interface MutationResult {
+  ok: boolean;
+}
+
 const Enter: NextPage = () => {
-  const [enter, { loading, data, error }] = useMutation("/api/users/enter");
+  const [enter, { loading, data, error }] =
+    useMutation<MutationResult>("/api/users/enter");
+  const [confirmToken, { loading: tokenLoading, data: tokenData }] =
+    useMutation<MutationResult>("/api/users/confirm");
   const [submitting, setSubmitting] = useState(false);
   const { register, reset, handleSubmit } = useForm<EnterForm>();
+  const { register: tokenRegister, handleSubmit: tokenHandleSubmit } =
+    useForm<TokenForm>();
   const [method, setMethod] = useState<"email" | "phone">("email");
   const onEmailClick = () => {
     setMethod("email");
@@ -24,75 +37,129 @@ const Enter: NextPage = () => {
     setMethod("phone");
     reset();
   };
-  const onValid = (validform: EnterForm) => {
-    enter(validform);
+  const onValid = (validForm: EnterForm) => {
+    enter(validForm);
   };
+
+  const onTokenValid = (validForm: TokenForm) => {
+    if (tokenLoading) return;
+    confirmToken(validForm);
+  };
+  console.log(data);
   return (
     <div className="mt-16 px-4">
       <h3 className="text-3xl font-bold text-center">Enter to Carrot</h3>
       <div className="mt-8">
-        <div className="flex flex-col items-center">
-          <h5 className=" text-gray-500">Enter using:</h5>
-          <div className="mt-8 border-b w-full grid grid-cols-2">
-            <button
-              className={cls(
-                "pb-4 font-medium border-b-2",
-                method === "email"
-                  ? "border-purple-400 text-purple-400"
-                  : "border-transparent"
-              )}
-              onClick={onEmailClick}
-            >
-              Email
-            </button>
-            <button
-              className={cls(
-                "pb-4 font-medium border-b-2",
-                method === "phone"
-                  ? "border-purple-400 text-purple-400"
-                  : "border-transparent"
-              )}
-              onClick={onPhoneClick}
-            >
-              Phone
-            </button>
-          </div>
-        </div>
-        <form onSubmit={handleSubmit(onValid)} className="mt-4 flex flex-col">
-          <label htmlFor="input" className="text-sm text-gray-500 font-bold">
-            {method === "email" ? "Email address" : null}
-            {method === "phone" ? "Phone number" : null}
-          </label>
-          <div>
-            {method === "email" ? (
+        {data?.ok ? (
+          <form
+            onSubmit={tokenHandleSubmit(onTokenValid)}
+            className="mt-4 flex flex-col"
+          >
+            <label htmlFor="input" className="text-sm text-gray-500 font-bold">
+              CONFIRMATION TOKEN
+            </label>
+            <div>
               <Input
-                register={register("email")}
-                id="email"
-                type="email"
+                register={tokenRegister("token")}
+                id="token"
+                type="number"
                 required
                 className="appearance-none shadow-md my-2 w-full rounded-md border-gray-400 focus:ring-purple-300 focus:border-purple-300"
               />
-            ) : null}
-            {method === "phone" ? (
-              <div className="flex shadow-md my-2">
-                <span className="flex items-center justify-center bg-gray-100 select-none border-gray-400 rounded-l-md border border-r-0 px-2 text-sm text-gray-500">
-                  +82
-                </span>
-                <Input
-                  register={register("phone")}
-                  id="phone"
-                  type="number"
-                  required
-                  className="appearance-none w-full rounded-r-md focus:ring-purple-300 border-gray-400 focus:border-purple-300"
-                />
+            </div>
+            <button className="bg-purple-600 p-4 rounded-md shadow-md text-white hover:font-bold hover:text-md transition-all">
+              {method === "email"
+                ? tokenLoading
+                  ? "loading"
+                  : "Get login link"
+                : null}
+              {method === "phone"
+                ? tokenLoading
+                  ? "loading"
+                  : "Get one-time password"
+                : null}
+            </button>
+          </form>
+        ) : (
+          <>
+            <div className="flex flex-col items-center">
+              <h5 className=" text-gray-500">Enter using:</h5>
+              <div className="mt-8 border-b w-full grid grid-cols-2">
+                <button
+                  className={cls(
+                    "pb-4 font-medium border-b-2",
+                    method === "email"
+                      ? "border-purple-400 text-purple-400"
+                      : "border-transparent"
+                  )}
+                  onClick={onEmailClick}
+                >
+                  Email
+                </button>
+                <button
+                  className={cls(
+                    "pb-4 font-medium border-b-2",
+                    method === "phone"
+                      ? "border-purple-400 text-purple-400"
+                      : "border-transparent"
+                  )}
+                  onClick={onPhoneClick}
+                >
+                  Phone
+                </button>
               </div>
-            ) : null}
-          </div>
-          <button className="bg-purple-600 p-4 rounded-md shadow-md text-white hover:font-bold hover:text-md transition-all">
-            {method === "email" ? "Get login link" : null}
-            {method === "phone" ? "Get one-time password" : null}
-          </button>
-        </form>
+            </div>
+            <form
+              onSubmit={handleSubmit(onValid)}
+              className="mt-4 flex flex-col"
+            >
+              <label
+                htmlFor="input"
+                className="text-sm text-gray-500 font-bold"
+              >
+                {method === "email" ? "Email address" : null}
+                {method === "phone" ? "Phone number" : null}
+              </label>
+              <div>
+                {method === "email" ? (
+                  <Input
+                    register={register("email")}
+                    id="email"
+                    type="email"
+                    required
+                    className="appearance-none shadow-md my-2 w-full rounded-md border-gray-400 focus:ring-purple-300 focus:border-purple-300"
+                  />
+                ) : null}
+                {method === "phone" ? (
+                  <div className="flex shadow-md my-2">
+                    <span className="flex items-center justify-center bg-gray-100 select-none border-gray-400 rounded-l-md border border-r-0 px-2 text-sm text-gray-500">
+                      +82
+                    </span>
+                    <Input
+                      register={register("phone")}
+                      id="phone"
+                      type="number"
+                      required
+                      className="appearance-none w-full rounded-r-md focus:ring-purple-300 border-gray-400 focus:border-purple-300"
+                    />
+                  </div>
+                ) : null}
+              </div>
+              <button className="bg-purple-600 p-4 rounded-md shadow-md text-white hover:font-bold hover:text-md transition-all">
+                {method === "email"
+                  ? loading
+                    ? "loading"
+                    : "Get login link"
+                  : null}
+                {method === "phone"
+                  ? loading
+                    ? "loading"
+                    : "Get one-time password"
+                  : null}
+              </button>
+            </form>
+          </>
+        )}
         <div className="mt-10">
           <div className="relative">
             <div className="absolute w-full border border-t-0 border-gray-400" />

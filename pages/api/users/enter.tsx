@@ -31,22 +31,22 @@ async function handler(
       },
     },
   });
-  if (phone) {
-    const message = await twilioClient.messages.create({
-      messagingServiceSid: process.env.TWILIO_MSID,
-      to: process.env.TWILIO_PHONE!,
-      body: `인증 코드 ${payload}`,
-    });
-    console.log(message);
-  } else if (email) {
-    const email = await mail.send({
-      from: "megas93@naver.com",
-      to: "megas93@naver.com",
-      subject: "캐럿 마켓 인증 메일",
-      text: `인증 코드 ${payload}`,
-    });
-    console.log(email);
-  }
+  // if (phone) {
+  //   const message = await twilioClient.messages.create({
+  //     messagingServiceSid: process.env.TWILIO_MSID,
+  //     to: process.env.TWILIO_PHONE!,
+  //     body: `인증 코드 ${payload}`,
+  //   });
+  //   console.log(message);
+  // } else if (email) {
+  //   const email = await mail.send({
+  //     from: "megas93@naver.com",
+  //     to: "megas93@naver.com",
+  //     subject: "캐럿 마켓 인증 메일",
+  //     text: `인증 코드 ${payload}`,
+  //   });
+  //   console.log(email);
+  // }
   return res.json({
     ok: true,
   });
