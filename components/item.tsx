@@ -18,7 +18,7 @@ export default function Item({
   comments,
 }: ABC) {
   return (
-    <Link href={`/items/${id}`}>
+    <Link href={`/products/${id}`}>
       <div className="flex justify-between p-4 border-b hover:bg-purple-100 transition-colors">
         <div className="flex space-x-4">
           <div className="w-24 h-24 bg-purple-400 rounded-md hover:bg-purple-600 transition-colors" />
