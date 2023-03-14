@@ -45,7 +45,9 @@ export default function Layout({
             </svg>
           </span>
         ) : null}
-        {title ? <span>{title}</span> : null}
+        {title ? (
+          <span className={cls(canGoBack ? "mx-auto" : "")}>{title}</span>
+        ) : null}
       </div>
       <div className={cls("pt-12", hasTabBar ? "pb-16" : "")}>{children}</div>
       {hasTabBar ? (

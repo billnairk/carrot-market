@@ -4,7 +4,7 @@ import type { NextPage } from "next";
 
 const ChatDetail: NextPage = () => {
   return (
-    <Layout canGoBack>
+    <Layout canGoBack title="Chat">
       <div className="px-4 py-4">
         <Message message="에눌 가능한가요?" />
         <Message message="님 섡" reversed />
