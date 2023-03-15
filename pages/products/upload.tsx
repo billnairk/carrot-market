@@ -7,7 +7,7 @@ import type { NextPage } from "next";
 const Upload: NextPage = () => {
   return (
     <Layout canGoBack title="Upload Product">
-      <div className="px-4 py-10">
+      <div className="px-4 py-6 space-y-4">
         <div>
           <label className="w-full flex items-center justify-center h-52 border-2 rounded-md text-gray-500 border-gray-300 border-dashed hover:text-purple-500 hover:border-purple-500 cursor-pointer">
             <svg
@@ -27,30 +27,24 @@ const Upload: NextPage = () => {
             <input className="hidden" type="file" />
           </label>
         </div>
-        <div className="my-5">
-          <label htmlFor="price" className="text-sm text-gray-500 font-bold">
-            Price
-          </label>
-          <div className="rounded-md relative flex items-center">
-            <div className="absolute left-0 pl-3 pointer-events-none">
-              <span className="text-sm text-gray-500">$</span>
-            </div>
-            <Input
-              className="appearance-none pl-7 shadow-md my-1 w-full rounded-md border-gray-400 focus:ring-purple-300 focus:outline-none focus:border-purple-300"
-              id="price"
-              type="text"
-              placeholder="0.00"
-            ></Input>
-            <div className="absolute right-3 pointer-events-none">
-              <span className="text-gray-500 ">USD</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <label className="text-sm text-gray-500 font-bold">Description</label>
-          <Textarea rows={4} />
-        </div>
-        <Button>Upload product</Button>
+        <Input
+          label="Name"
+          name="Name"
+          kind="text"
+          type="text"
+          register
+          required
+        ></Input>
+        <Input
+          label="Price"
+          name="Price"
+          kind="price"
+          type="text"
+          register
+          required
+        ></Input>
+        <Textarea rows={4} />
+        <Button kind="two">Upload product</Button>
       </div>
     </Layout>
   );
